@@ -2,10 +2,22 @@
 
 ## Юзается gulp, npm, bower, sass.
 
+Reqiured:
+1. npm 
+https://www.npmjs.com/
+2. gulp
+https://www.npmjs.com/package/gulp
+3. bower (опционально)
+https://bower.io/
+4. sass
+http://sass-lang.com/install
+
 Установка:
-1. Клонировать репозиторий git clone https://github.com/ioayo/mySite.git
-2. В терминале npm i
-3. gulp
+1. Клонировать репозиторий 
+```git clone https://github.com/ioayo/mySite.git```
+2. В терминале 
+```npm i```
+3. ```gulp```
 4. DONE
 Инклюдед - jquery и bootstrap (only grid), нормалайза и резет-сиэсэс не имеется, устанавливайте какой вам нужно через bower
 bower i normalize.css //as example
