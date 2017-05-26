@@ -20,7 +20,7 @@ http://sass-lang.com/install
 3. ```gulp```
 4. DONE
 Инклюдед - jquery и bootstrap (only grid), нормалайза и резет-сиэсэс не имеется, устанавливайте какой вам нужно через bower
-```bower i normalize.css //as example```
+```bower i normalize.css //   as example```
 
 Галп-таски
 
