@@ -2,7 +2,13 @@
 
 ## Юзается gulp, npm, bower, sass.
 
-Инклюдед - jquery и bootstrap (only grid)
+Установка:
+1. Клонировать репозиторий git clone https://github.com/ioayo/mySite.git
+2. В терминале npm i
+3. gulp
+4. DONE
+Инклюдед - jquery и bootstrap (only grid), нормалайза и резет-сиэсэс не имеется, устанавливайте какой вам нужно через bower
+bower i normalize.css //as example
 
 Галп-таски
 
@@ -11,4 +17,4 @@
 + deploy - для деплоя(надо порыться в галпфайле - добавить туда свои данные). 
 Деплой делается через фтп, предварительно папка продакшена упаковывается в zip файл и закачивается на сервер на указанный адрес, распакуйте через ssh
 
-# Enjoy ur experience!
+## Enjoy ur experience
