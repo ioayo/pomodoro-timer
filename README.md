@@ -7,7 +7,7 @@ Reqiured:
 https://www.npmjs.com/
 2. gulp
 https://www.npmjs.com/package/gulp
-3. bower (опционально)
+3. bower 
 https://bower.io/
 4. sass
 http://sass-lang.com/install
