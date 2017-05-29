@@ -21,7 +21,7 @@ http://sass-lang.com/install
 4. DONE
 
 
-Инклюдед - jquery и bootstrap (only grid), нормалайза и резет-сиэсэс не имеется, устанавливается через bower
+Инклюдед - jquery и bootstrap (only grid), normalize-css и все нужные вам библиотеки инсталлируются через bower
 
 
 ```bower i normalize.css //   as example```
