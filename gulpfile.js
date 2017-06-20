@@ -42,7 +42,7 @@ gulp.task('browser-sync', function() {
 		},
 		notify: false,
 		// tunnel: true,
-		// tunnel: "projectmane", //Demonstration page: http://projectmane.localtunnel.me
+		// tunnel: "projectmane", //страница доступа по адресу: http://projectmane.localtunnel.me
 	});
 });
 
