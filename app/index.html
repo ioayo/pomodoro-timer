@@ -25,18 +25,26 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="#000">
 
 	<style>body { opacity: 0; overflow-x: hidden; } html { background-color: #fff; }</style>
-
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 </head>
 
 <body>
 
 	<div class="container">
-
-		<div id="timer">
-			magis is here
-			<button>okey</button>
+		<div class="row">
+			<div class="col-xs-6" id="timer">
+				<div class="timer-wrap">
+					<span class="timer-minutes">25</span>
+					<span class="timer-divider">:</span>
+					<span class="timer-seconds">00</span>
+				</div>
+				<div class="buttons-wrap">
+					<button class="btn-start btn btn-primary">Start</button>
+					<button class="btn-pause btn btn-secondary">Pause</button>
+					<button class="btn-reset btn btn-danger">Reset</button>
+				</div>
+			</div>
 		</div>
-			
 	</div>
 
 	</div>
