@@ -64,7 +64,6 @@ var pomodoro = {
 		//define variables
 		var 
 		//get buttons from DOM
-		//
 		buttonStart = document.querySelector('.btn-start'),
 		buttonPause = document.querySelector('.btn-pause'),
 		buttonReset = document.querySelector('.btn-reset'),
