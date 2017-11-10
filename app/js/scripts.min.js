@@ -6,7 +6,6 @@ var pomodoro = {
 	minutesDOM: null,
 	secondsDOM: null,
 	intervalCallback: function() {
-			console.log('setInterval is running');
 			if(!this.isStarted) return false;
 			if(this.seconds == 0 && this.minutes == 0) {
 				this.finish();
@@ -23,7 +22,6 @@ var pomodoro = {
 	start: function() {
 		var self = this;
 		this.isStarted = true;
-		console.log(this.isStarted, 'start!');
 		this.interval = setInterval(function(){ 
 			self.intervalCallback.apply(self)
 		}, 1000);
@@ -31,7 +29,6 @@ var pomodoro = {
 	pause: function() {
 		this.isStarted = false;
 		clearInterval(this.interval);
-		console.log('pause', this.isStarted);
 	},
 	reset: function(min, sec) {
 		this.isStarted = false;
@@ -44,7 +41,6 @@ var pomodoro = {
 	updateDOM: function() {
 		this.minutesDOM.innerHTML = this.toDoubleDigits(this.minutes);
 		this.secondsDOM.innerHTML = this.toDoubleDigits(this.seconds);
-		console.log(this.minutes, this.seconds);
 	},
 
 	toDoubleDigits: function(number) {
@@ -80,11 +76,13 @@ var pomodoro = {
 		
 		//handle clicks on buttons
 		buttonStart.addEventListener('click', function(){
-			self.start();
-		});
-
-		buttonPause.addEventListener('click', function(){
-			self.pause();
+			if (!self.isStarted) {
+				self.start();
+				this.innerHTML = 'Pause';
+			} else {
+				self.pause();
+				this.innerHTML = 'Start';
+			}
 		});
 
 		buttonReset.addEventListener('click', function(){
