@@ -65,7 +65,7 @@ gulp.task('watch', ['sass', 'js', 'browser-sync'], function() {
 gulp.task('imagemin', function() {
 	return gulp.src('app/img/**/*')
 	.pipe(cache(imagemin()))
-	.pipe(gulp.dest('dist/img')); 
+	.pipe(gulp.dest('docs/img')); 
 });
 
 gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
@@ -73,25 +73,25 @@ gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
 	var buildFiles = gulp.src([
 		'app/*.html',
 		'app/.htaccess',
-		]).pipe(gulp.dest('dist'));
+		]).pipe(gulp.dest('docs'));
 
 	var buildCss = gulp.src([
 		'app/css/main.min.css',
-		]).pipe(gulp.dest('dist/css'));
+		]).pipe(gulp.dest('docs/css'));
 
 	var buildJs = gulp.src([
 		'app/js/scripts.min.js',
-		]).pipe(gulp.dest('dist/js'));
+		]).pipe(gulp.dest('docs/js'));
 
 	var buildFonts = gulp.src([
 		'app/fonts/**/*',
-		]).pipe(gulp.dest('dist/fonts'));
+		]).pipe(gulp.dest('docs/fonts'));
 });
 
 gulp.task('deploy', ['removezip'], function() {
-	var zipFiles = gulp.src('dist/**/*')
+	var zipFiles = gulp.src('docs/**/*')
         .pipe(zip('archive.zip'))
-        .pipe(gulp.dest('dist'));	
+        .pipe(gulp.dest('docs'));	
 
 	var conn = ftp.create({
 		host:      'iocode.tk',
@@ -102,14 +102,14 @@ gulp.task('deploy', ['removezip'], function() {
 	});
 
 	var globs = [
-	'dist/*.zip',
+	'docs/*.zip',
 	];
 	return gulp.src(globs, {buffer: false})
 	.pipe(conn.dest('/public_html/'));
 
 });
 
-gulp.task('removedist', function() { return del.sync('dist'); });
+gulp.task('removedist', function() { return del.sync('docs'); });
 gulp.task('clearcache', function () { return cache.clearAll(); });
-gulp.task('removezip',  function() { return del.sync('dist/*.zip'); })
+gulp.task('removezip',  function() { return del.sync('docs/*.zip'); })
 gulp.task('default', ['watch']);
