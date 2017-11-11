@@ -5,6 +5,13 @@ var pomodoro = {
 	interval: null,
 	minutesDOM: null,
 	secondsDOM: null,
+	setActualTextButton: function(button) {
+		if (this.isStarted) {
+			button.innerHTML = 'Pause';
+		} else {
+			button.innerHTML = 'Start';
+		}
+	},
 	intervalCallback: function() {
 			if(!this.isStarted) return false;
 			if(this.seconds == 0 && this.minutes == 0) {
@@ -30,13 +37,15 @@ var pomodoro = {
 		this.isStarted = false;
 		clearInterval(this.interval);
 	},
+
 	reset: function(min, sec) {
-		this.isStarted = false;
 		this.minutes = min;
 		this.seconds = sec;
 		this.updateDOM();
+		this.isStarted = false;
 		clearInterval(this.interval);
 	},
+	
 
 	updateDOM: function() {
 		this.minutesDOM.innerHTML = this.toDoubleDigits(this.minutes);
@@ -53,6 +62,14 @@ var pomodoro = {
 	finish: function() {
 		this.isStarted = false;
 		clearInterval(this.interval);
+	},
+
+	//event handlers for timer types 
+	
+	setTimer: function(min, sec) {
+		
+		this.reset(min,sec);
+		this.start();
 	},
 
 	init: function() {
@@ -72,21 +89,38 @@ var pomodoro = {
 		//short variables for quick reference
 		seconds = this.seconds,
 		minutes = this.minutes;
-		
+		this.defaultTimerButton = document.getElementById('pomodoro'),
+		this.shortBreakButton = document.getElementById('shortBreak'),
+		this.longBreakButton = document.getElementById('longBreak');
+
 		//handle clicks on buttons
 		buttonStart.addEventListener('click', function(){
 			if (!self.isStarted) {
 				self.start();
-				this.innerHTML = 'Pause';
 			} else {
 				self.pause();
-				this.innerHTML = 'Start';
 			}
+			self.setActualTextButton(buttonStart);
 		});
-
 		buttonReset.addEventListener('click', function(){
 			self.reset(25,0);
+			self.setActualTextButton(buttonStart);
 		});
+
+		this.defaultTimerButton.addEventListener('click', function() {
+			self.setTimer.call(self, 25, 0);
+			self.setActualTextButton(buttonStart);
+		});
+
+		this.shortBreakButton.addEventListener('click', function(){
+			self.setTimer.call(self, 5, 0);
+			self.setActualTextButton(buttonStart);
+		})
+
+		this.longBreakButton.addEventListener('click', function(){
+			self.setTimer.call(self, 10, 0);
+			self.setActualTextButton(buttonStart);
+		})
 	},
 };
 

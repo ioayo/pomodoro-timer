@@ -55,5 +55,32 @@ button
 .buttons-wrap
 	text-align: center
 
+.timer-types
+	list-style-type: none
+	margin: 0 auto
+	display: flex
+	width: 100%
+	justify-content: space-between
+	li 
+		display: block
+		width: 100%
+
+.timer-type__button
+	display: inline-block
+	background-color: #007bff
+	color: white
+	text-align: center
+	width: 100%
+	font-weight: bold
+	padding: 7px 0
+	border: 1px solid darken(#007bff, 10%)
+	cursor: pointer
+	transition: all .2s
+	&:hover, &:active
+		background-color: darken(#007bff, 5%)
+
+
+
+
 
 @import "media" // Всегда в конце
