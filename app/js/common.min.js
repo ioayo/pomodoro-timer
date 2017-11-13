@@ -46,14 +46,20 @@ var pomodoro = {
 	start: function(timerType, marathon) {
 		clearInterval(this.loopTitle);
 		if (marathon) {
-			this.docTitle = this.docTitle + ' Marathon';
+			
+			this.docTitle = timerType + ' Marathon';
+			this.titleDOM.innerHTML = this.docTitle;
+		} else {
+			this.docTitle = timerType;
+			this.titleDOM.innerHTML = timerType;
 		};
+
 		document.title = this.docTitle;
 		var self = this;
 		this.isStarted = true;
 		this.interval = setInterval(function(){ 
 			self.intervalCallback.call(self, timerType, marathon)
-		}, 1);
+		}, 1000);
 	},
 
 	pause: function() {
@@ -67,6 +73,9 @@ var pomodoro = {
 		this.updateDOM();
 		this.isStarted = false;
 		clearInterval(this.interval);
+		this.docTitle = this.defaultTitle;
+		document.title = this.docTitle;
+		this.titleDOM.innerHTML = this.docTitle;
 	},
 	
 
@@ -123,6 +132,8 @@ var pomodoro = {
 		this.secondsDOM = document.querySelector('.timer-seconds');
 		this.shortDing = document.getElementById('shortDing');
 		this.docTitle = document.title;
+		this.titleDOM = document.querySelector('.title');
+		this.defaultTitle = this.titleDOM.innerHTML;
 		this.marathonButton = document.querySelector('.btn-marathon');
 		this.defaultTimerButton = document.getElementById('pomodoro'),
 		this.shortBreakButton = document.getElementById('shortBreak'),
@@ -145,7 +156,7 @@ var pomodoro = {
 		buttonStart.addEventListener('click', function(){
 			if (!self.flagMarathon) {
 					if (!self.isStarted) {
-					self.start();
+						self.setTimer.call(self, 25, 0, 'Work', false);
 				} else {
 					self.pause();
 				};
