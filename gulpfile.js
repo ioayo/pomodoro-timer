@@ -74,7 +74,10 @@ gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
 		'app/*.html',
 		'app/.htaccess',
 		]).pipe(gulp.dest('docs'));
-
+	var buildAudio = gulp.src([
+		'app/audio/*'
+		]).pipe(gulp.dest('docs/audio'));
+	
 	var buildCss = gulp.src([
 		'app/css/main.min.css',
 		]).pipe(gulp.dest('docs/css'));

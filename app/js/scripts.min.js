@@ -3,8 +3,19 @@ var pomodoro = {
 	seconds: 00,
 	isStarted: false,
 	interval: null,
+	loopTitle: null,
 	minutesDOM: null,
 	secondsDOM: null,
+	flag: true,
+	loopDocTitle: function(string1, string2) {
+		if (this.flag) {
+			document.title = string1;
+			this.flag = false;
+		} else {
+			document.title = string2;
+			this.flag = true;
+		}
+	},
 	setActualTextButton: function(button) {
 		if (this.isStarted) {
 			button.innerHTML = 'Pause';
@@ -26,13 +37,17 @@ var pomodoro = {
 			};
 			this.updateDOM();
 	},
+
 	start: function() {
+		clearInterval(this.loopTitle);
+		document.title = this.docTitle;
 		var self = this;
 		this.isStarted = true;
 		this.interval = setInterval(function(){ 
 			self.intervalCallback.apply(self)
 		}, 1000);
 	},
+
 	pause: function() {
 		this.isStarted = false;
 		clearInterval(this.interval);
@@ -60,7 +75,12 @@ var pomodoro = {
 	},
 
 	finish: function() {
+		var self = this;
+		this.shortDing.play();
 		this.isStarted = false;
+		this.loopTitle = setInterval(function() {
+			self.loopDocTitle('End timer', 'Pomodoro timer')
+		}, 1000);
 		clearInterval(this.interval);
 	},
 
@@ -77,13 +97,16 @@ var pomodoro = {
 		//get minutes, seconds spans from DOM
 		this.minutesDOM = document.querySelector('.timer-minutes');
 		this.secondsDOM = document.querySelector('.timer-seconds');
-
+		this.shortDing = document.getElementById('shortDing');
+		this.docTitle = document.title;
 		//define variables
 		var 
 		//get buttons from DOM
 		buttonStart = document.querySelector('.btn-start'),
 		buttonPause = document.querySelector('.btn-pause'),
 		buttonReset = document.querySelector('.btn-reset'),
+		//save timer type button list to a variable
+		timerTypeContainer = document.querySelector('.timer-types');
 		//save reference to pomodoro object to variable
 		self = this,
 		//short variables for quick reference
@@ -115,12 +138,19 @@ var pomodoro = {
 		this.shortBreakButton.addEventListener('click', function(){
 			self.setTimer.call(self, 5, 0);
 			self.setActualTextButton(buttonStart);
-		})
+		});
 
 		this.longBreakButton.addEventListener('click', function(){
 			self.setTimer.call(self, 10, 0);
 			self.setActualTextButton(buttonStart);
-		})
+		});
+		
+		timerTypeContainer.addEventListener('click', function(e){
+			for (var i = 0; i < this.children.length; i++) {
+				this.children[i].children[0].classList.remove('active');
+			};
+			e.target.classList.add('active');
+		});
 	},
 };
 
